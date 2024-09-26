@@ -2,14 +2,15 @@ import { Link } from "react-router-dom"
 import { searchBtn } from "@/store/atom"
 import { useSetRecoilState } from "recoil"
 
-export default function HeaderLoggedIn({ setLoggedin }) {
+export default function HeaderLoggedIn({ setSignin }) {
 
   const setSearch = useSetRecoilState(searchBtn)
 
   function handleLogout() {
-    setLoggedin(false)
+    setSignin(false)
     localStorage.removeItem("AppToken")
     localStorage.removeItem("username")
+    console.log("this is logout")
   }
 
   function handleSearch() {

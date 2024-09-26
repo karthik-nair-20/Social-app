@@ -10,6 +10,8 @@ export const searchBtn = atom({
   default: false,
 })
 
+// i think i can use selector to make searchbtn false depending on conditons
+
 export const userAtom = atom({
   key: 'userAtom',
   default: {
@@ -27,4 +29,18 @@ export const profileDataAtom = atom({
     isFollowing: false,
     counts: { postCount: 0, followerCount: 0, followingCount: 0 }
   }
+});
+
+//Edit post for now
+export const postAtom = atom({
+  key: 'postAtom',
+  default: {
+    title: '',
+    body: '',
+  }
+})
+
+export const postSendingCountAtom = atom({
+  key: 'postSendingCount',
+  default: 0,
 });

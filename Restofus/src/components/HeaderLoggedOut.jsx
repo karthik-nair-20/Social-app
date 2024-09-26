@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { useSetRecoilState, useRecoilValue } from "recoil"
 import { userAtom } from "@/store/atom"
 
-export default function HeaderLoggedOut({setLoggedin}) {
+export default function HeaderLoggedOut({setSignin}) {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -19,7 +19,7 @@ export default function HeaderLoggedOut({setLoggedin}) {
       })
       if(response.data)
       {
-        setLoggedin(true)
+        setSignin(true)
         setUserState({
           token: response.data.token,
           username: response.data.username

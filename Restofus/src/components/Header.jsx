@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 
-  const[loggedin,setLoggedin] = useRecoilState(loggedIn)
+  const[signin,setSignin] = useRecoilState(loggedIn)
   const navigate = useNavigate()
 
   function handleClick() {
@@ -18,7 +18,7 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold" onClick={handleClick}>MyApp</h1>
           <div className="flex space-x-2">
-          {loggedin ? <HeaderLoggedIn setLoggedin={setLoggedin} /> : <HeaderLoggedOut setLoggedin={setLoggedin} />}
+          {signin ? <HeaderLoggedIn setSignin={setSignin} /> : <HeaderLoggedOut setSignin={setSignin} />}
           </div>
         </div>
       </header>

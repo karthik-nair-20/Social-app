@@ -33,7 +33,7 @@ export default function ViewSinglePost() {
     return () => {
       ourRequest.cancel()
     }
-  }, [])
+  }, [id])
 
   if (loading) {
     return (

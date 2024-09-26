@@ -23,7 +23,7 @@ function App() {
       <BrowserRouter>
         {/* <Flashmessage /> */}
         <AppLayout>
-        <SearchBtn />
+        {/* <SearchBtn /> */}
         <Routes>
           <Route path='/' element={<ConditionalHome />} />
           <Route path='/about-us' element={<About />} />
