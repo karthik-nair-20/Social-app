@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
-import { searchBtn } from "@/store/atom"
+import { loggedIn, searchBtn } from "@/store/atom"
 import { useSetRecoilState } from "recoil"
 
-export default function HeaderLoggedIn({ setSignin }) {
+export default function HeaderLoggedIn() {
 
   const setSearch = useSetRecoilState(searchBtn)
+  const setSignin = useSetRecoilState(loggedIn)
 
   function handleLogout() {
     setSignin(false)

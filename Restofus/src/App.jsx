@@ -14,8 +14,12 @@ import Editpost from './components/Editpost';
 import Search from './components/Search';
 import AppLayout from './components/AppLayout';
 import { searchBtn } from './store/atom';
+import  Axios  from 'axios';
+Axios.defaults.baseURL = "http://localhost:8080"
 
 function App() {
+
+  // useEffect for loggedin check and localstorage
 
   return (
 
@@ -23,7 +27,7 @@ function App() {
       <BrowserRouter>
         {/* <Flashmessage /> */}
         <AppLayout>
-        {/* <SearchBtn /> */}
+        <SearchBtn />
         <Routes>
           <Route path='/' element={<ConditionalHome />} />
           <Route path='/about-us' element={<About />} />

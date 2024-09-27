@@ -3,11 +3,22 @@ import HeaderLoggedIn from "./HeaderLoggedIn"
 import { useRecoilState } from 'recoil';
 import { loggedIn } from "@/store/atom";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Header() {
 
-  const[signin,setSignin] = useRecoilState(loggedIn)
+  const [signin,setSignin] = useRecoilState(loggedIn)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = localStorage.getItem('AppToken');
+    if (token) {
+      setSignin(true);
+    }
+    else{
+      setSignin(false);
+    }
+  },[setSignin])
 
   function handleClick() {
     navigate('/')
@@ -18,7 +29,7 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold" onClick={handleClick}>MyApp</h1>
           <div className="flex space-x-2">
-          {signin ? <HeaderLoggedIn setSignin={setSignin} /> : <HeaderLoggedOut setSignin={setSignin} />}
+          {signin ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
           </div>
         </div>
       </header>

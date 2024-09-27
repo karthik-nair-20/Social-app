@@ -35,7 +35,7 @@ export default function Createpost() {
       setError("Please login to post")
     }
     try {
-      const response = await Axios.post("http://localhost:8080/create-post", {
+      const response = await Axios.post("create-post", {
         title,
         body: description,
         token: user?.token,

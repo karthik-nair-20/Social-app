@@ -1,6 +1,6 @@
 import Axios from "axios"
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -25,13 +25,15 @@ export default function Editpost() {
   const user = useRecoilValue(userAtom)
   const [sendCount, setSendCount] = useRecoilState(postSendingCountAtom)
 
+  const navigate = useNavigate()
+
 
 
   useEffect(() => {
     const ourRequest = Axios.CancelToken.source()
     async function fetchPostById() {
       try {
-        const response = await Axios.get(`http://localhost:8080/post/${id}`, { cancelToken: ourRequest.token })
+        const response = await Axios.get(`post/${id}`, { cancelToken: ourRequest.token })
         if (response.data) {
           setLoading(false)
           setPost({
@@ -41,6 +43,7 @@ export default function Editpost() {
           if (user.username !== response.data.author.username) {
             console.log("you dont have permisson to edit")
             // navigate to home with flashmsg
+            navigate('/')
           }
         }
       } catch (e) {
@@ -57,7 +60,7 @@ export default function Editpost() {
       const ourRequest = Axios.CancelToken.source();
       async function savePost() {
         try {
-          const response = await Axios.post(`http://localhost:8080/post/${id}/edit`, {
+          const response = await Axios.post(`post/${id}/edit`, {
             title: title,
             body: body,
             token: user.token

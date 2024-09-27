@@ -2,7 +2,7 @@ import { atom } from "recoil"
 
 export const loggedIn = atom({
   key: 'loggedIn',
-  default: false,
+  default: Boolean(localStorage.getItem('AppToken')),
 });
 
 export const searchBtn = atom({
@@ -15,19 +15,24 @@ export const searchBtn = atom({
 export const userAtom = atom({
   key: 'userAtom',
   default: {
-    token: null,
+    token: localStorage.getItem('AppToken') || null,
     email:'',
-    username: '',
+    username:localStorage.getItem('username') || '',
   }
 })
 
 export const profileDataAtom = atom({
   key: 'profileDataAtom',
   default: {
-    profileUsername: "...",
-    profileAvatar: "https://gravatar.com/avatar/placeholder?s=128",
-    isFollowing: false,
-    counts: { postCount: 0, followerCount: 0, followingCount: 0 }
+    followActionLoading: false,
+    startFollowingRequestCount: 0,
+    stopFollowingRequestCount: 0,
+    profileData: {
+      profileUsername: "...",
+      profileAvatar: "https://gravatar.com/avatar/placeholder?s=128",
+      isFollowing: false,
+      counts: { postCount: 0, followerCount: 0, followingCount: 10}
+    }
   }
 });
 

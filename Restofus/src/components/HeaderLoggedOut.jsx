@@ -2,18 +2,20 @@ import { useState } from "react"
 import Axios from "axios"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useSetRecoilState, useRecoilValue } from "recoil"
-import { userAtom } from "@/store/atom"
+import { useSetRecoilState } from "recoil"
+import { loggedIn, userAtom } from "@/store/atom"
 
-export default function HeaderLoggedOut({setSignin}) {
-
+export default function HeaderLoggedOut() {
+  // use form and combine username and pwd into single useState.
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const setUserState = useSetRecoilState(userAtom)
+  const setSignin = useSetRecoilState(loggedIn)
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault()
     try {
-      const response = await Axios.post("http://localhost:8080/login", {
+      const response = await Axios.post("login", {
         username,
         password
       })
@@ -32,7 +34,7 @@ export default function HeaderLoggedOut({setSignin}) {
       }
     }
     catch (e) {
-      console.log("login failed")
+      console.log("There was a problem.")
     }
   }
   return (

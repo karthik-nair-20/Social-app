@@ -20,7 +20,7 @@ export default function ViewSinglePost() {
 
     async function fetchPostById() {
       try {
-        const response = await Axios.get(`http://localhost:8080/post/${id}`, { cancelToken: ourRequest.token })
+        const response = await Axios.get(`post/${id}`, { cancelToken: ourRequest.token })
         if (response) {
           setLoading(false)
           setPost(response.data)
@@ -44,7 +44,7 @@ export default function ViewSinglePost() {
   async function handleDelete() {
     const ourRequest = Axios.CancelToken.source()
     try {
-      const response = await Axios.delete(`http://localhost:8080/post/${id}`, { data: { token: user?.token } }, { cancelToken: ourRequest.token })
+      const response = await Axios.delete(`post/${id}`, { data: { token: user?.token } }, { cancelToken: ourRequest.token })
 
       if (response.data == "Success") {
         navigate(`/profile/${post.author.username}`)

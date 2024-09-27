@@ -14,7 +14,7 @@ export default function Profilepost() {
     const ourRequest = Axios.CancelToken.source()
 
     async function fetchData() {
-      const response = await Axios.get(`http://localhost:8080/profile/${username}/posts`,{cancelToken: ourRequest.token})
+      const response = await Axios.get(`profile/${username}/posts`,{cancelToken: ourRequest.token})
       if (response) {
         setLoading(false)
         setPosts(response.data)
