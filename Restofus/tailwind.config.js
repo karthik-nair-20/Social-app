@@ -17,9 +17,12 @@ export default {
         blue: {
           custom: '#4886ee'
         }
+      },
+      backgroundImage: {
+        'cute-gradient': 'linear-gradient(to right, #ec4899, #8b5cf6, #6366f1)',
       }
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")]
 }
 
