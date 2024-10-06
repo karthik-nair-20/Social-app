@@ -49,3 +49,11 @@ export const postSendingCountAtom = atom({
   key: 'postSendingCount',
   default: 0,
 });
+
+export const chatStateAtom = atom({
+  key: 'chatStateAtom',
+  default: {
+    isChatOpen: false,
+    unreadChatCount: 0,
+  }
+})

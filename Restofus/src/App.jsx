@@ -15,11 +15,13 @@ import Search from './components/Search';
 import AppLayout from './components/AppLayout';
 import { searchBtn } from './store/atom';
 import  Axios  from 'axios';
+import Chat from './components/Chat';
 Axios.defaults.baseURL = "http://localhost:8080"
 
 function App() {
 
   // useEffect for loggedin check and localstorage
+  // chat application using socket io
 
   return (
 
@@ -39,6 +41,7 @@ function App() {
           {/* CLEAN THE URL AS WELL */}
           <Route path='*' element={<Homeguest />} />
         </Routes>
+        <Chat />
         </AppLayout>
       </BrowserRouter>
     </RecoilRoot>
