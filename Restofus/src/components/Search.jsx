@@ -1,60 +1,84 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Axios from "axios"
 import { useDebounce } from "use-debounce";
-import { useSetRecoilState } from "recoil";
-import { searchBtn } from "@/store/atom";
-import { Input } from "@/components/ui/input"
-import { Card, CardContent } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Link } from "react-router-dom";
+import { toast } from 'sonner';
+import { SearchIcon } from 'lucide-react';
+import { ScrollArea } from "./ui/scroll-area";
+import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function Search() {
-  const [input, setInput] = useState('')
-  const setSearchActive = useSetRecoilState(searchBtn)
-  const [debouncedText] = useDebounce(input, 2000);
-  const [posts, setPosts] = useState([])
+  const [state, setState] = useState({
+    open: false,
+    searchTerm: '',
+    loading: false,
+    posts: [],
+    selectedIndex: -1,
+  });
+  const [debouncedText] = useDebounce(state.searchTerm, 300);
+  const navigate = useNavigate();
+  const fetchSearchResult = useCallback(async (term) => {
+    setState((prev) => ({ ...prev, loading: true }));
+    try {
+      const response = await Axios.post('search', { searchTerm: term })
+      setState((prev) => ({ ...prev, posts: response.data, loading: false }))
+    } catch (e) {
+      toast.error('Something went wrong while searching for videos');
+      setState((prev) => ({
+        ...prev,
+        searchTerm: '',
+        loading: false,
+      }));
+    } finally {
+      setState((prev) => ({ ...prev, loading: false }))
+    }
+  }, [])
 
   useEffect(() => {
-    async function fetchSearchResult() {
-      try {
-          const response = await Axios.post('search',{searchTerm: debouncedText})
-          setPosts(response.data)
-      }catch(e) {
-        console.log("we have got a error")
-      }
+    if (debouncedText.trim().length > 2) {
+      fetchSearchResult(debouncedText);
+    }else {
+      setState((prev) => ({
+        ...prev,
+        posts: [],
+        loading: false,
+      }));
     }
-    fetchSearchResult()
-  },[debouncedText])
+  }, [debouncedText, fetchSearchResult])
 
-  function handleClick() {
-    setSearchActive(false)
+  function handleClick(id) {
+    navigate(`/profile/${id}`)
   }
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setState((prev) => ({ ...prev, searchTerm: value }));
+  };
+
 
   return (
-    <div className="fixed inset-0 flex items-start justify-center pt-16 bg-gray-900 bg-opacity-50 backdrop-blur-sm z-50">
-      <Card className="w-full max-w-md bg-gray-800 border-gray-700">
-        <CardContent className="p-4">
-          <div className="relative flex items-center">
-            <div className="grid place-items-center h-full text-gray-300 pr-2" onClick={handleClick}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            </div>
-              <Input
-                className="w-full pl-5 bg-gray-700 border-gray-600 text-white placeholder-gray-400"
-                placeholder="Search something..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-              />
-          </div>
-          {posts.length > 0 && (
-            <ScrollArea className="h-72 mt-4">
-              {posts.map((post) => (
-                <Link
+    <>
+      <div className="relative flex items-center">
+      {state.loading == true && <Loading /> }
+        <SearchIcon
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+          size={20}
+        />
+        <input
+          type="text"
+          placeholder="Search Anything"
+          value={state.searchTerm}
+          onChange={handleSearchChange}
+          className="rounded-lg pl-10 pr-12 py-2 border border-gray-800 bg-gray-950 focus-visible:ring-gray-700"
+          aria-label="Search"
+        />
+        {state.posts.length > 0 && (
+          <div className="absolute top-16 left-0 w-ful bg-black border border-gray-700 rounded-lg shadow-lg z-50">
+            <ScrollArea className="max-h-60">
+              {state.posts.map((post) => (
+                <div
                   key={post._id}
-                  to={`/post/${post._id}`}
-                  onClick={handleClick}
-                  className="flex items-center p-3 rounded-md hover:bg-gray-700 transition-colors"
+                  onClick={() => handleClick(post.author.username)}
+                  className="flex items-center p-3 cursor-pointer hover:bg-gray-700 transition-colors"
                 >
                   <img
                     className="w-8 h-8 rounded-full mr-3"
@@ -62,13 +86,12 @@ export default function Search() {
                     alt={`${post.title} avatar`}
                   />
                   <div className="text-sm font-medium text-white">{post.title}</div>
-                </Link>
+                </div>
               ))}
             </ScrollArea>
-          )}
-        </CardContent>
-      </Card>
-    </div>
-
+          </div>
+        )}
+      </div>
+    </>
   )
 }

@@ -134,6 +134,7 @@ export default function Profile() {
               <span className="font-semibold text-xl text-white capitalize">
                 {userProfileData.profileData.profileUsername}
               </span>
+              <span className="text-white">edit</span>
               {userProfileData.profileData && !userProfileData.profileData.isFollowing && user.username != userProfileData.profileData.profileUsername &&
                 userProfileData.profileData.profileUsername != "..." && (
                   <button onClick={startFollowing} disabled={userProfileData.followActionLoading} className="px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 transition duration-200">

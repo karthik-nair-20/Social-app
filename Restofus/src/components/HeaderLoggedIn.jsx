@@ -29,13 +29,6 @@ export default function HeaderLoggedIn() {
 
   return (
     <div className="flex flex-row items-center justify-between space-x-4 my-3">
-      {/* Search Icon */}
-      <Link href="#" className="text-white hover:text-gray-300" onClick={handleSearch}>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-6 w-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
-      </Link>
-
       {/* Notification Bell with Unread Count */}
       <span className="relative text-white hover:text-gray-300 p-3" onClick={handleChat} >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-6 w-6">

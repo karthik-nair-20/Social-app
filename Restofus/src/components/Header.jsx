@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { loggedIn } from "@/store/atom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Search from "./Search";
 
 export default function Header() {
 
@@ -29,6 +30,7 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold" onClick={handleClick}>MyApp</h1>
           <div className="flex space-x-2">
+          { signin && <Search />}
           {signin ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
           </div>
         </div>

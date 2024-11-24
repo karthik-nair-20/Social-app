@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { UserPlus } from "lucide-react"
+import Loading from "./Loading";
 
 export default function ProfileFollowers() {
 
@@ -28,7 +29,11 @@ export default function ProfileFollowers() {
   }, [username])
 
   if (loading) {
-    return "loading..."
+    return (
+      <div className="flex justify-center items-center">
+      <Loading />
+      </div>
+    )
   }
 
   return (

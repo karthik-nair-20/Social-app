@@ -30,7 +30,7 @@ export default function Homeguest() {
   }
 
   return (
-    <div className="mx-auto my-8 flex flex-col md:flex-row gap-8 text-white">
+    <div className="mx-auto my-8 flex flex-col md:flex-row gap-8 text-white pt-4">
         <div className="md:w-1/2">
           <div className="bg-muted p-6 rounded-lg h-full">
             <h2 className="text-xl font-semibold mb-4">Remember Writing?</h2>
@@ -39,7 +39,7 @@ export default function Homeguest() {
         </div>
 
         <div className="md:w-1/2">
-          <div className="bg-card text-card-foreground p-6 rounded-lg">
+          <div className="bg-card text-card-foreground p-6 text-black rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Sign Up</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
