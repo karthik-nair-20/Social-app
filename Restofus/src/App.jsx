@@ -16,7 +16,7 @@ import AppLayout from './components/AppLayout';
 import { searchBtn } from './store/atom';
 import  Axios  from 'axios';
 import Chat from './components/Chat';
-Axios.defaults.baseURL = "http://localhost:8080"
+Axios.defaults.baseURL = "https://social-app-bzb7.onrender.com"
 
 function App() {
 
