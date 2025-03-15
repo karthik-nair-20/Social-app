@@ -39,7 +39,7 @@ export default function Homeguest() {
         </div>
 
         <div className="md:w-1/2">
-          <div className="bg-card text-card-foreground p-6 text-black rounded-lg">
+          <div className="bg-card text-card-foreground p-6 rounded-lg text-white">
             <h2 className="text-xl font-semibold mb-4">Sign Up</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
