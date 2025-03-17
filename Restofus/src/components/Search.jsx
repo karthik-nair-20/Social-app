@@ -13,7 +13,6 @@ export default function Search() {
     searchTerm: '',
     loading: false,
     posts: [],
-    selectedIndex: -1,
   });
   const [debouncedText] = useDebounce(state.searchTerm, 300);
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ export default function Search() {
   useEffect(() => {
     if (debouncedText.trim().length > 2) {
       fetchSearchResult(debouncedText);
-    }else {
+    } else {
       setState((prev) => ({
         ...prev,
         posts: [],
@@ -57,10 +56,14 @@ export default function Search() {
 
   return (
     <>
+      {state.loading == true && (
+        <div className="mt-5">
+          <Loading />
+        </div>
+      )}
       <div className="relative flex items-center">
-      {state.loading == true && <Loading /> }
         <SearchIcon
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
           size={20}
         />
         <input
@@ -68,7 +71,7 @@ export default function Search() {
           placeholder="Search Anything"
           value={state.searchTerm}
           onChange={handleSearchChange}
-          className="rounded-lg pl-10 pr-12 py-2 border border-gray-800 bg-gray-950 focus-visible:ring-gray-700"
+          className="rounded-lg pl-10 pr-12 py-2 border border-gray-800 bg-gray-950 focus-visible:ring-gray-700 text-white"
           aria-label="Search"
         />
         {state.posts.length > 0 && (

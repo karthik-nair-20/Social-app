@@ -28,10 +28,10 @@ export const profileDataAtom = atom({
     startFollowingRequestCount: 0,
     stopFollowingRequestCount: 0,
     profileData: {
-      profileUsername: "...",
+      profileUsername: "loading...",
       profileAvatar: "https://gravatar.com/avatar/placeholder?s=128",
       isFollowing: false,
-      counts: { postCount: 0, followerCount: 0, followingCount: 10}
+      counts: { postCount: 0, followerCount: 0, followingCount: 0}
     }
   }
 });

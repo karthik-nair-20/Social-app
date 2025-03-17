@@ -27,10 +27,14 @@ export default function ProfileFollowing() {
     }
     fetchData()
     return () => ourRequest.cancel()
-  }, [username])
+  }, [username, following])
 
   if (loading) {
-    return <Loading />
+    return (
+      <div className="flex justify-center items-center">
+        <Loading />
+      </div>
+    )
   }
 
   return (
@@ -38,8 +42,8 @@ export default function ProfileFollowing() {
       {following.length > 0 &&
         following.map((follow, index) => {
           return (
-            <Link key={index} to={`/profile/${follow.username}`} className="flex items-center p-4 bg-gray-900 rounded-lg shadow-md">
-              <img className="w-10 h-10 rounded-full mr-4 border-2 border-gray-200 dark:border-gray-700" src={follow.avatar} /> 
+            <Link key={index} to={`/profile/${follow.username}`} className="flex items-center mb-2 p-4 border border-white rounded-lg shadow-md">
+              <img className="w-10 h-10 rounded-full mr-4 border-2 border-gray-200 dark:border-gray-700" src={follow.avatar} />
               <strong className="text-base text-white block">
               {follow.username}
               </strong>
@@ -68,14 +72,6 @@ export default function ProfileFollowing() {
             <p className="text-gray-300 text-center mb-6">
               Start building your network by following interesting people and communities.
             </p>
-            {/* <Button
-              variant="outline"
-              size="lg"
-              className="group relative overflow-hidden bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300"
-            >
-              <span className="relative z-10">Discover People to Follow</span>
-              <span className="absolute inset-0 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-            </Button> */}
           </motion.div>
         </>
         )

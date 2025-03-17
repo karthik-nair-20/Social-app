@@ -26,9 +26,9 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-dark p-4 text-blue-custom border-b border-b-gray-700">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold" onClick={handleClick}>MyApp</h1>
+    <header className="text-blue-600 border-b border-b-gray-700">
+        <div className="container mx-auto my-4 flex justify-between items-center">
+          <h1 className="text-2xl font-medium" onClick={handleClick}>Leylin</h1>
           <div className="flex space-x-2">
           { signin && <Search />}
           {signin ? <HeaderLoggedIn /> : <HeaderLoggedOut />}

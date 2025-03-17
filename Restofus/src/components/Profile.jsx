@@ -126,7 +126,7 @@ export default function Profile() {
         <>
           <h2 className="flex items-center my-6">
             <img
-              className="w-12 h-12 rounded-full mr-4 border-2 border-gray-200 dark:border-gray-700"
+              className="w-12 h-12 rounded-full mr-4 border-2 border-gray-700"
               src={userProfileData.profileData.profileAvatar}
               alt={`${userProfileData.profileData.profileUsername}'s avatar`}
             />
@@ -134,17 +134,17 @@ export default function Profile() {
               <span className="font-semibold text-xl text-white capitalize">
                 {userProfileData.profileData.profileUsername}
               </span>
-              <span className="text-white">edit</span>
+              <span className="text-gray-300 font-extralight">Edit</span>
               {userProfileData.profileData && !userProfileData.profileData.isFollowing && user.username != userProfileData.profileData.profileUsername &&
-                userProfileData.profileData.profileUsername != "..." && (
+                userProfileData.profileData.profileUsername != "loading..." && (
                   <button onClick={startFollowing} disabled={userProfileData.followActionLoading} className="px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 transition duration-200">
-                    Follow <i className="fas fa-user-plus ml-2"></i>
+                    Follow
                   </button>
                 )}
               {userProfileData.profileData && userProfileData.profileData.isFollowing && user.username != userProfileData.profileData.profileUsername &&
-                userProfileData.profileData.profileUsername != "..." && (
+                userProfileData.profileData.profileUsername != "loading..." && (
                   <button onClick={stopFollowing} disabled={userProfileData.followActionLoading} className="px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 transition duration-200">
-                    Unfollow <i className="fas fa-user-plus ml-2"></i>
+                    Unfollow
                   </button>
                 )}
             </div>
@@ -153,23 +153,23 @@ export default function Profile() {
             <NavLink to="" end className={({ isActive }) =>
               isActive
                 ? "pb-2 text-blue-600 font-semibold border-b-2 border-blue-600"
-                : "pb-2 text-gray-600 hover:text-blue-600 transition"
+                : "pb-2 text-gray-300 hover:text-blue-600 transition"
             } >
-              Posts {userProfileData.profileData.counts?.postCount || 0}
+              Posts {userProfileData?.profileData?.counts?.postCount}
             </NavLink>
             <NavLink to="followers" className={({ isActive }) =>
               isActive
                 ? "pb-2 text-blue-600 font-semibold border-b-2 border-blue-600"
-                : "pb-2 text-gray-600 hover:text-blue-600 transition"
+                : "pb-2 text-gray-300 hover:text-blue-600 transition"
             } >
-              Followers {userProfileData.profileData.counts?.followerCount || 0}
+              Followers {userProfileData?.profileData?.counts?.followerCount}
             </NavLink>
             <NavLink to="following" className={({ isActive }) =>
               isActive
                 ? "pb-2 text-blue-600 font-semibold border-b-2 border-blue-600"
-                : "pb-2 text-gray-600 hover:text-blue-600 transition"
+                : "pb-2 text-gray-300 hover:text-blue-600 transition"
             }>
-              Following {userProfileData.profileData.counts?.followingCount || 0}
+              Following {userProfileData?.profileData?.counts?.followingCount}
             </NavLink>
           </div>
           {/* <Profilepost /> */}

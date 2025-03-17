@@ -52,13 +52,13 @@ export default function HeaderLoggedIn() {
       </Link>
 
       {/* Create Post Button */}
-      <Link to="/create-post" className="px-3 py-1 bg-green-500 text-white text-sm rounded hover:bg-green-600 transition-colors">
+      <Link to="/create-post" className="px-3 py-1 bg-blue-900 text-white text-sm rounded hover:bg-blue-700 transition-colors">
         Create Post
       </Link>
 
       {/* Sign Out Button */}
       <button
-        className="px-3 py-1 bg-gray-500 text-white text-sm rounded hover:bg-gray-600 transition-colors"
+        className="px-3 py-1 bg-gray-700 text-white text-sm rounded hover:bg-gray-600 transition-colors"
         onClick={handleLogout}
       >
         Sign Out

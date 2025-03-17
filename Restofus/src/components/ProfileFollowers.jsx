@@ -26,7 +26,7 @@ export default function ProfileFollowers() {
     }
     fetchData()
     return () => ourRequest.cancel()
-  }, [username])
+  }, [username, followers])
 
   if (loading) {
     return (
@@ -41,7 +41,7 @@ export default function ProfileFollowers() {
       {followers.length > 0 &&
         followers.map((follower, index) => {
           return (
-            <Link key={index} to={`/profile/${follower.username}`} className="flex items-center p-4 bg-gray-900 rounded-lg shadow-md">
+            <Link key={index} to={`/profile/${follower.username}`} className="flex items-center mb-2 p-4 border border-white rounded-lg">
               <img className="w-10 h-10 rounded-full mr-4 border-2 border-gray-200 dark:border-gray-700" src={follower.avatar} /> 
               <strong className="text-base text-white block">
               {follower.username}

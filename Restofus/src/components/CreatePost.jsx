@@ -52,7 +52,7 @@ export default function Createpost() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center p-4">
+    <div className="flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function Createpost() {
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">Create a New Post</CardTitle>
             <CardDescription className="text-center">Share your thoughts with the world</CardDescription>
-          </CardHeader>
+          </CardHeader>  
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
