@@ -2,6 +2,28 @@
 logs
 *.log
 npm-debug.log*
+<<<<<<< HEAD
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+=======
 node_modules/
 dist/
 
@@ -41,3 +63,4 @@ jspm_packages
 
 #Excluding build directory
 public/
+>>>>>>> c112137a8cfecaed6c276472c53545ae8d1b974a

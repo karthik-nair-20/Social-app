@@ -1,0 +1,66 @@
+import Homeguest from './components/Homeguest'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css'
+import About from './components/About';
+import Term from './components/Term';
+import Home from './components/Home';
+import Createpost from './components/CreatePost';
+import ViewSinglePost from './components/ViewSinglePost';
+import Flashmessage from './components/Flashmessage';
+import { RecoilRoot, useRecoilValue } from 'recoil';
+import { loggedIn } from './store/atom';
+import Profile from './components/Profile';
+import Editpost from './components/Editpost';
+import Search from './components/Search';
+import AppLayout from './components/AppLayout';
+import { searchBtn } from './store/atom';
+import  Axios  from 'axios';
+import Chat from './components/Chat';
+import NewHomePage from "./components/container/main";
+Axios.defaults.baseURL = "https://social-app-bzb7.onrender.com"
+
+function App() {
+
+  // useEffect for loggedin check and localstorage
+  // chat application using socket io
+
+  return (
+
+    <RecoilRoot>
+      <BrowserRouter>
+        {/* <Flashmessage /> */}
+        <AppLayout>
+        <Routes>
+          <Route path="/" element={<NewHomePage />} />
+          <Route path='/home' element={<ConditionalHome />} />
+          <Route path='/about-us' element={<About />} />
+          <Route path='/create-post' element={<Createpost />} />
+          <Route path='/post/:id' element={<ViewSinglePost />} />
+          <Route path='/profile/:username/*' element={<Profile />} />
+          <Route path='/terms' element={<Term />} />
+          <Route path='/post/:id/edit' element={<Editpost />} />
+          {/* CLEAN THE URL AS WELL */}
+          <Route path='*' element={<Homeguest />} />
+        </Routes>
+        <Chat />
+        </AppLayout>
+      </BrowserRouter>
+    </RecoilRoot>
+  )
+}
+
+function ConditionalHome() {
+  const loggedin = useRecoilValue(loggedIn);
+  return loggedin ? <Home /> : <Homeguest />
+}
+
+function SearchBtn() {
+  const isSearchActive = useRecoilValue(searchBtn);
+  return (
+    <>
+      {isSearchActive && <Search />}
+    </>
+  )
+}
+
+export default App
