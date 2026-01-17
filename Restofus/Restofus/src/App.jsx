@@ -16,7 +16,6 @@ import AppLayout from './components/AppLayout';
 import { searchBtn } from './store/atom';
 import  Axios  from 'axios';
 import Chat from './components/Chat';
-import NewHomePage from "./components/container/main";
 Axios.defaults.baseURL = "https://social-app-bzb7.onrender.com"
 
 function App() {
@@ -31,8 +30,7 @@ function App() {
         {/* <Flashmessage /> */}
         <AppLayout>
         <Routes>
-          <Route path="/" element={<NewHomePage />} />
-          <Route path='/home' element={<ConditionalHome />} />
+          <Route path='/' element={<ConditionalHome />} />
           <Route path='/about-us' element={<About />} />
           <Route path='/create-post' element={<Createpost />} />
           <Route path='/post/:id' element={<ViewSinglePost />} />

@@ -20,9 +20,10 @@ export default function Landing() {
               transition={{ delay: 0.2, duration: 1 }}
             >
               <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">
-                Welcome to Bluewave
+                Welcome to Leylin
               </span>
             </motion.h1>
+
             <motion.p
               className="text-xl text-gray-400 max-w-md"
               initial={{ opacity: 0 }}

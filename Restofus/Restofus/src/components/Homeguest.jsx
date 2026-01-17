@@ -7,9 +7,11 @@ import Landing from "./Landing"
 
 
 export default function Homeguest() {
+
   const[username, setUsername] = useState("")
   const[email,setEmail] = useState("")
   const[password, setPassword] = useState("")
+
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -35,6 +37,7 @@ export default function Homeguest() {
             <Landing />
           </div>
         </div>
+
         <div className="md:w-1/2">
           <div className="text-card-foreground p-6 rounded-lg text-gray-300">
             <h2 className="text-xl font-semibold mb-4">Sign Up</h2>
@@ -56,5 +59,6 @@ export default function Homeguest() {
           </div>
         </div>
     </div>
+
   )
 }
